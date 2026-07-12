@@ -12,7 +12,8 @@ function shanghaiDate() {
 }
 
 async function getCount(query = "") {
-  const response = await fetch(`${counterUrl}${query}`, { cache: "no-store" });
+  const separator = query ? "&" : "?";
+  const response = await fetch(`${counterUrl}${query}${separator}v=${Date.now()}`, { cache: "no-store" });
   if (!response.ok) throw new Error("GoatCounter counter request failed");
   const { count } = await response.json();
   return Number(count).toLocaleString("zh-CN");
