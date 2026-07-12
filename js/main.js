@@ -6,5 +6,6 @@ import { hero } from "./components/hero.js";
 import { projectsSection } from "./components/projects.js";
 import { loadVisitStats } from "./components/stats.js";
 
-document.querySelector("#app").innerHTML = `${header()}<main>${hero()}${experience()}${projectsSection()}${education()}</main>${footer()}`;
+document.querySelector("#app").innerHTML = `${header()}<main>${hero()}${about()}${experience()}${projectsSection()}${education()}</main>${footer()}`;
 loadVisitStats();
+import { about } from "./components/about.js";

@@ -14,7 +14,6 @@ export function projectsSection() {
   return `
     <section id="work" class="shell section work" aria-labelledby="work-title">
       <div class="section-heading">
-        <p class="kicker">SELECTED WORK</p>
         <h2 id="work-title">代表作品</h2>
       </div>
       <div class="project-grid">${cards}</div>

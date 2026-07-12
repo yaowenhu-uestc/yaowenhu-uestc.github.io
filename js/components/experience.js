@@ -15,7 +15,6 @@ export function experience() {
   return `
     <section id="experience" class="shell section" aria-labelledby="experience-title">
       <div class="section-heading">
-        <p class="kicker">EXPERIENCE</p>
         <h2 id="experience-title">实习经历</h2>
       </div>
       <div class="experience-list">${cards}</div>

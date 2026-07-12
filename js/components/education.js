@@ -2,7 +2,6 @@ export function education() {
   return `
     <section class="shell section education" aria-labelledby="education-title">
       <div class="section-heading">
-        <p class="kicker">EDUCATION</p>
         <h2 id="education-title">教育经历</h2>
       </div>
       <div class="education-content">

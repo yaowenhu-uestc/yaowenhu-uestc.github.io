@@ -2,12 +2,13 @@
   .shell { width: min(100% - 32px, 560px); }
   .nav { min-height: 64px; }
   .nav-links { display: none; }
-  .hero { min-height: auto; grid-template-columns: 1fr; gap: 48px; padding: 64px 0; }
+  .hero { min-height: auto; grid-template-columns: 1fr; gap: 40px; padding: 48px 0; }
   .hero-photo { max-width: 440px; }
-  .section { padding: 72px 0; }
-  .section-heading { margin-bottom: 40px; }
+  .section { padding: 56px 0; }
+  .section-heading { margin-bottom: 32px; }
   .experience-card { grid-template-columns: 1fr; gap: var(--space-md); padding: 32px 0; }
   .project-grid { grid-template-columns: 1fr; }
-  .project-card { min-height: 264px; padding: var(--space-xl); }
+  .project-card { min-height: 240px; padding: var(--space-xl); }
+  .principle-row { grid-template-columns: 1fr; gap: var(--space-xs); }
   .footer { align-items: start; flex-direction: column; }
 }
