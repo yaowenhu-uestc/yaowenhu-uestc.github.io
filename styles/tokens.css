@@ -1,5 +1,5 @@
 :root {
-  --ios-blue: #1769e0;
+  --ios-blue: var(--editor-accent, #1769e0);
   --bg: #fbfbf9;
   --panel: #ffffff;
   --panel-soft: #f4f4f2;
@@ -7,7 +7,7 @@
   --text-secondary: #6b6b6b;
   --text-tertiary: #8b8b8b;
   --hairline: #e5e5e5;
-  --radius-xl: 28px;
+  --radius-xl: var(--editor-card-radius, 28px);
   --radius-lg: 22px;
   --radius-md: 16px;
   --space-xs: 4px;

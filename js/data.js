@@ -1,7 +1,18 @@
-export const githubUrl = "https://github.com/yaowenhu-uestc";
-export const email = "yaowen.hu.uestc@gmail.com";
-
-export const experiences = [
+export const siteContent = {
+  hero: {
+    name: "胡耀文",
+    summary: "创造一个原本不存在、后来被很多人使用的产品。",
+    email: "yaowen.hu.uestc@gmail.com",
+    githubUrl: "https://github.com/yaowenhu-uestc",
+    githubButtonText: "访问 GitHub",
+    experienceButtonText: "查看经历",
+    photo: "assets/hero-beach.jpg"
+  },
+  about: {
+    title: "关于我",
+    text: "胡耀文，电子科技大学行政管理专业本科生，辅修交互新媒体艺术，专注 AI 产品方向。从多模态数据服务到教育与医疗 AI，我参与过面向 300 万+ 家长用户的社区产品从 0 到 1 建设；比起优化一个已经存在的东西，我更喜欢创造一个原本不存在、后来被很多人使用的产品。"
+  },
+  experiences: [
   {
     date: "2026.02 — 至今",
     company: "百度健康业务部",
@@ -32,9 +43,8 @@ export const experiences = [
       "优化标注流程并建设协作 SOP，提升交付效率与质量管理。"
     ]
   }
-];
-
-export const projects = [
+  ],
+  projects: [
   {
     title: "学而思亲子家长社区首页",
     type: "已上线",
@@ -65,4 +75,15 @@ export const projects = [
     description: "整合本地生活服务，为用户智能规划周末行程。",
     url: "https://weekend-agent.netlify.app/"
   }
-];
+  ],
+  style: {
+    accentColor: "#1769e0",
+    cardRadius: 28,
+    sectionSpace: 56
+  }
+};
+
+export const githubUrl = siteContent.hero.githubUrl;
+export const email = siteContent.hero.email;
+export const experiences = siteContent.experiences;
+export const projects = siteContent.projects;

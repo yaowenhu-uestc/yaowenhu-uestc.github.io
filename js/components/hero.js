@@ -1,19 +1,20 @@
-import { email, githubUrl } from "../data.js";
+import { siteContent } from "../data.js";
 
 export function hero() {
+  const { hero: content } = siteContent;
   return `
     <section id="top" class="shell hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <h1 id="hero-title">胡耀文</h1>
-        <p class="hero-summary">创造一个原本不存在、后来被很多人使用的产品。</p>
+        <h1 id="hero-title">${content.name}</h1>
+        <p class="hero-summary">${content.summary}</p>
         <div class="hero-actions">
-          <a class="button button-primary" href="${githubUrl}" target="_blank" rel="noreferrer">访问 GitHub <span aria-hidden="true">↗</span></a>
-          <a class="button button-secondary" href="#experience">查看经历 <span aria-hidden="true">↓</span></a>
+          <a class="button button-primary" href="${content.githubUrl}" target="_blank" rel="noreferrer">${content.githubButtonText} <span aria-hidden="true">↗</span></a>
+          <a class="button button-secondary" href="#experience">${content.experienceButtonText} <span aria-hidden="true">↓</span></a>
         </div>
-        <a class="hero-email" href="mailto:${email}">${email}</a>
+        <a class="hero-email" href="mailto:${content.email}">${content.email}</a>
       </div>
       <figure class="hero-photo">
-        <img src="assets/hero-beach.jpg" alt="胡耀文在海边" />
+        <img src="${content.photo}" alt="${content.name}的头像" />
       </figure>
     </section>`;
 }
