@@ -1,0 +1,32 @@
+.brand { font-size: 17px; font-weight: 820; letter-spacing: -0.04em; }
+.nav-links a, .footer a { min-height: 44px; display: inline-flex; align-items: center; }
+.nav-links a:hover, .footer a:hover { color: var(--ios-blue); }
+.github-link { min-height: 44px; display: inline-flex; align-items: center; padding: 0 var(--space-md); border: 0.5px solid var(--hairline); border-radius: var(--radius-md); font-size: 14px; font-weight: 720; }
+.kicker { margin-bottom: var(--space-md); color: var(--ios-blue); font-size: 12px; font-weight: 800; letter-spacing: 0.12em; }
+h1 { margin-bottom: var(--space-lg); font-size: clamp(64px, 8vw, 112px); letter-spacing: -0.085em; line-height: 0.86; font-weight: 860; }
+h1 span { color: var(--text-secondary); font-weight: 620; }
+h2 { font-size: clamp(40px, 5vw, 64px); letter-spacing: -0.07em; line-height: 0.95; font-weight: 840; }
+.hero-summary { max-width: 560px; color: var(--text-secondary); font-size: 20px; line-height: 1.7; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-md); margin-top: 40px; }
+.button { min-height: 48px; display: inline-flex; align-items: center; gap: var(--space-sm); padding: 0 20px; border-radius: var(--radius-md); font-size: 15px; font-weight: 720; transition: opacity 100ms ease-out, transform 100ms ease-out; }
+.button:hover, .github-link:hover { opacity: 0.85; transform: scale(0.97); }
+.button-primary { color: #fff; background: var(--ios-blue); }
+.button-secondary { background: var(--panel-soft); border: 0.5px solid var(--hairline); }
+.hero-photo { width: 100%; aspect-ratio: 3 / 4; margin: 0; overflow: hidden; border-radius: var(--radius-xl); background: var(--panel-soft); }
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center bottom; }
+.experience-card { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: var(--space-xl); padding: 40px 0; border-top: 0.5px solid var(--hairline); }
+.experience-card:last-child { border-bottom: 0.5px solid var(--hairline); }
+.experience-date, .experience-company, .project-type { color: var(--text-secondary); font-size: 14px; font-weight: 650; }
+.experience-card h3, .project-card h3 { margin: var(--space-xs) 0 var(--space-md); font-size: clamp(24px, 3vw, 32px); letter-spacing: -0.05em; }
+.experience-summary, .project-card p, .education-content { color: var(--text-secondary); line-height: 1.7; }
+.experience-card ul { display: grid; gap: var(--space-sm); padding: 0; margin: var(--space-md) 0 0; list-style: none; color: var(--text-secondary); line-height: 1.65; }
+.experience-card li { position: relative; padding-left: var(--space-md); }
+.experience-card li::before { position: absolute; left: 0; color: var(--ios-blue); content: "•"; }
+.project-card { min-height: 336px; display: flex; flex-direction: column; justify-content: space-between; padding: 40px; border: 0.5px solid var(--hairline); border-radius: var(--radius-xl); background: var(--panel); transition: transform 200ms ease-in-out, background 200ms ease-in-out; }
+.project-card:hover { background: var(--panel-soft); transform: translateY(-4px); }
+.project-arrow { align-self: end; color: var(--ios-blue); font-size: 28px; }
+.education-school { color: var(--text); font-size: 30px; font-weight: 760; letter-spacing: -0.05em; }
+.visit-stats { display: flex; gap: 40px; }
+.visit-stats p { display: grid; gap: var(--space-xs); color: var(--text-tertiary); font-size: 12px; }
+.visit-stats span { color: var(--text); font-size: 24px; font-weight: 760; letter-spacing: -0.05em; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; } }

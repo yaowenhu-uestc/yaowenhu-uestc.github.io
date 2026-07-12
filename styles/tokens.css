@@ -1,0 +1,19 @@
+:root {
+  --ios-blue: #1769e0;
+  --bg: #fbfbf9;
+  --panel: #ffffff;
+  --panel-soft: #f4f4f2;
+  --text: #171717;
+  --text-secondary: #6b6b6b;
+  --text-tertiary: #8b8b8b;
+  --hairline: #e5e5e5;
+  --radius-xl: 28px;
+  --radius-lg: 22px;
+  --radius-md: 16px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+}

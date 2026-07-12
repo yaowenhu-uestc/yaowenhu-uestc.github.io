@@ -1,0 +1,11 @@
+.shell { width: min(1180px, calc(100% - 64px)); margin: 0 auto; }
+.site-header { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter: blur(22px) saturate(180%); -webkit-backdrop-filter: blur(22px) saturate(180%); border-bottom: 0.5px solid var(--hairline); }
+.nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: var(--space-md); }
+.nav-links { display: flex; gap: var(--space-lg); color: var(--text-secondary); font-size: 14px; font-weight: 650; }
+.hero { min-height: 680px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 440px); align-items: center; gap: clamp(48px, 9vw, 128px); padding: 96px 0; }
+.section { padding: 112px 0; border-top: 0.5px solid var(--hairline); }
+.section-heading { margin-bottom: 48px; }
+.experience-list { display: grid; }
+.project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-lg); }
+.education-content { display: grid; gap: var(--space-sm); }
+.footer { display: flex; align-items: end; justify-content: space-between; gap: var(--space-lg); padding: 48px 0; border-top: 0.5px solid var(--hairline); }
