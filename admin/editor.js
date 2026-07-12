@@ -1,4 +1,4 @@
-const state = { content: null, dirty: false, section: "hero" };
+const state = { content: null, dirty: false, section: "hero", itemIndex: null };
 const loginPanel = document.querySelector("#login-panel");
 const studioPanel = document.querySelector("#studio-panel");
 const properties = document.querySelector("#properties");
@@ -28,9 +28,10 @@ function markDirty() {
 
 function refreshPreview() {
   const { hero, about, experiences, projects, style } = state.content;
-  const experienceHtml = experiences.map((item) => `<article data-section="experiences"><small>${escapeHtml(item.date)}</small><h3>${escapeHtml(item.company)}</h3><strong>${escapeHtml(item.role)}</strong><p>${escapeHtml(item.summary)}</p><ul>${item.points.map((point) => `<li>${escapeHtml(point)}</li>`).join("")}</ul></article>`).join("");
-  const projectHtml = projects.map((item) => `<article data-section="projects"><small>${escapeHtml(item.type)}</small><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p><span>↗</span></article>`).join("");
-  preview.srcdoc = `<!doctype html><html lang="zh-CN"><head><style>:root{--accent:${escapeHtml(style.accentColor)};--radius:${Number(style.cardRadius)}px;--space:${Number(style.sectionSpace)}px}*{box-sizing:border-box}body{margin:0;color:#171717;background:#fbfbf9;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif}main{width:min(100% - 64px,1180px);margin:auto}.nav{height:64px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e5e5e5;font-weight:700}.nav span{color:#777;font-size:13px}.hero{display:grid;grid-template-columns:1fr 32%;gap:64px;align-items:center;padding:52px 0}.hero h1{font-size:clamp(52px,8vw,92px);letter-spacing:-.07em;margin:0 0 18px}.hero p,.section>p,article p,li{color:#6b6b6b;line-height:1.7}.buttons{display:flex;gap:12px;margin-top:22px}.button{padding:13px 17px;border-radius:14px;background:var(--accent);color:#fff;font-size:14px;font-weight:700}.button.alt{background:#f4f4f2;color:#222}.photo{width:100%;aspect-ratio:1;border-radius:50%;object-fit:cover;background:#eee}.section{padding:var(--space) 0;border-top:1px solid #e5e5e5}.section h2{font-size:42px;letter-spacing:-.06em}.list{margin-top:28px}.experience{display:grid;gap:0}.experience article{padding:22px 0;border-top:1px solid #e5e5e5}.experience article:last-child{border-bottom:1px solid #e5e5e5}.experience h3,.projects h3{font-size:26px;margin:5px 0}.experience strong{font-size:15px}.experience ul{padding-left:18px}.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:28px}.projects article{position:relative;min-height:190px;padding:22px;border:1px solid #e5e5e5;border-radius:var(--radius);background:#fff}.projects span{position:absolute;right:20px;bottom:16px;color:var(--accent);font-size:27px}small{color:#777} [data-section]{cursor:pointer;outline:0;transition:box-shadow .15s}[data-section]:hover{box-shadow:0 0 0 3px var(--accent)}@media(max-width:600px){main{width:min(100% - 32px,560px)}.hero{grid-template-columns:1fr;gap:24px}.photo{max-width:300px}.projects{grid-template-columns:1fr}}</style></head><body><main><nav class="nav"><b data-section="hero">${escapeHtml(hero.name)}</b><span>关于　经历　作品</span></nav><section class="hero" data-section="hero"><div><h1>${escapeHtml(hero.name)}</h1><p>${escapeHtml(hero.summary)}</p><div class="buttons"><span class="button">${escapeHtml(hero.githubButtonText)}</span><span class="button alt">${escapeHtml(hero.experienceButtonText)}</span></div></div><img class="photo" src="${escapeHtml(hero.photo)}" alt="头像" /></section><section class="section" data-section="about"><h2>${escapeHtml(about.title)}</h2><p>${escapeHtml(about.text)}</p></section><section class="section"><h2 data-section="experiences">实习经历</h2><div class="list experience">${experienceHtml}</div></section><section class="section"><h2 data-section="projects">代表作品</h2><div class="projects">${projectHtml}</div></section></main><script>document.addEventListener('click',e=>{const target=e.target.closest('[data-section]');if(target)parent.postMessage({section:target.dataset.section},'*')})<\/script></body></html>`;
+  const photoUrl = hero.photo.startsWith("http") ? hero.photo : `https://yaowenhu-uestc.github.io/${hero.photo}`;
+  const experienceHtml = experiences.map((item, index) => `<article data-section="experiences" data-index="${index}"><small>${escapeHtml(item.date)}</small><h3>${escapeHtml(item.company)}</h3><strong>${escapeHtml(item.role)}</strong><p>${escapeHtml(item.summary)}</p><ul>${item.points.map((point) => `<li>${escapeHtml(point)}</li>`).join("")}</ul></article>`).join("");
+  const projectHtml = projects.map((item, index) => `<article data-section="projects" data-index="${index}"><small>${escapeHtml(item.type)}</small><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p><span>↗</span></article>`).join("");
+  preview.srcdoc = `<!doctype html><html lang="zh-CN"><head><style>:root{--accent:${escapeHtml(style.accentColor)};--radius:${Number(style.cardRadius)}px;--space:${Number(style.sectionSpace)}px}*{box-sizing:border-box}body{margin:0;color:#171717;background:#fbfbf9;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif}main{width:min(100% - 64px,1180px);margin:auto}.nav{height:64px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e5e5e5;font-weight:700}.nav span{color:#777;font-size:13px}.hero{display:grid;grid-template-columns:1fr 32%;gap:64px;align-items:center;padding:52px 0}.hero h1{font-size:clamp(52px,8vw,92px);letter-spacing:-.07em;margin:0 0 18px}.hero p,.section>p,article p,li{color:#6b6b6b;line-height:1.7}.buttons{display:flex;gap:12px;margin-top:22px}.button{padding:13px 17px;border-radius:14px;background:var(--accent);color:#fff;font-size:14px;font-weight:700}.button.alt{background:#f4f4f2;color:#222}.photo{width:100%;aspect-ratio:1;border-radius:50%;object-fit:cover;background:#eee}.section{padding:var(--space) 0;border-top:1px solid #e5e5e5}.section h2{font-size:42px;letter-spacing:-.06em}.list{margin-top:28px}.experience{display:grid;gap:0}.experience article{padding:22px 0;border-top:1px solid #e5e5e5}.experience article:last-child{border-bottom:1px solid #e5e5e5}.experience h3,.projects h3{font-size:26px;margin:5px 0}.experience strong{font-size:15px}.experience ul{padding-left:18px}.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:28px}.projects article{position:relative;min-height:190px;padding:22px;border:1px solid #e5e5e5;border-radius:var(--radius);background:#fff}.projects span{position:absolute;right:20px;bottom:16px;color:var(--accent);font-size:27px}small{color:#777} [data-section]{cursor:pointer;outline:0;transition:box-shadow .15s}[data-section]:hover{box-shadow:0 0 0 3px var(--accent)}@media(max-width:600px){main{width:min(100% - 32px,560px)}.hero{grid-template-columns:1fr;gap:24px}.photo{max-width:300px}.projects{grid-template-columns:1fr}}</style></head><body><main><nav class="nav"><b data-section="hero">${escapeHtml(hero.name)}</b><span>关于　经历　作品</span></nav><section class="hero" data-section="hero"><div><h1>${escapeHtml(hero.name)}</h1><p>${escapeHtml(hero.summary)}</p><div class="buttons"><span class="button">${escapeHtml(hero.githubButtonText)}</span><span class="button alt">${escapeHtml(hero.experienceButtonText)}</span></div></div><img class="photo" src="${escapeHtml(photoUrl)}" alt="头像" /></section><section class="section" data-section="about"><h2>${escapeHtml(about.title)}</h2><p>${escapeHtml(about.text)}</p></section><section class="section"><h2 data-section="experiences">实习经历</h2><div class="list experience">${experienceHtml}</div></section><section class="section"><h2 data-section="projects">代表作品</h2><div class="projects">${projectHtml}</div></section></main><script>document.addEventListener('click',e=>{const target=e.target.closest('[data-section]');if(target)parent.postMessage({section:target.dataset.section,index:target.dataset.index===undefined?null:Number(target.dataset.index)},'*')})<\/script></body></html>`;
 }
 
 function field(label, value, path, type = "text") {
@@ -49,11 +50,11 @@ function renderAbout() {
 }
 
 function experienceCard(item, index) {
-  return `<article class="card-editor"><h3>经历 ${index + 1}</h3>${field("时间", item.date, `experiences.${index}.date`)}${field("公司", item.company, `experiences.${index}.company`)}${field("职位", item.role, `experiences.${index}.role`)}${field("简介", item.summary, `experiences.${index}.summary`, "textarea")}${field("工作要点（一行一条）", item.points.join("\n"), `experiences.${index}.points`, "textarea")}<div class="card-actions"><button class="text-button" data-move="experiences" data-index="${index}" data-direction="up" type="button">上移</button><button class="text-button" data-move="experiences" data-index="${index}" data-direction="down" type="button">下移</button><button class="text-button danger" data-remove="experiences" data-index="${index}" type="button">删除</button></div></article>`;
+  return `<article class="card-editor${state.itemIndex === index ? " selected" : ""}" data-editor-card="${index}"><h3>经历 ${index + 1}</h3>${field("时间", item.date, `experiences.${index}.date`)}${field("公司", item.company, `experiences.${index}.company`)}${field("职位", item.role, `experiences.${index}.role`)}${field("简介", item.summary, `experiences.${index}.summary`, "textarea")}${field("工作要点（一行一条）", item.points.join("\n"), `experiences.${index}.points`, "textarea")}<div class="card-actions"><button class="text-button" data-move="experiences" data-index="${index}" data-direction="up" type="button">上移</button><button class="text-button" data-move="experiences" data-index="${index}" data-direction="down" type="button">下移</button><button class="text-button danger" data-remove="experiences" data-index="${index}" type="button">删除</button></div></article>`;
 }
 
 function projectCard(item, index) {
-  return `<article class="card-editor"><h3>作品 ${index + 1}</h3>${field("名称", item.title, `projects.${index}.title`)}${field("类型", item.type, `projects.${index}.type`)}${field("介绍", item.description, `projects.${index}.description`, "textarea")}${field("跳转链接", item.url, `projects.${index}.url`)}<div class="card-actions"><button class="text-button" data-move="projects" data-index="${index}" data-direction="up" type="button">上移</button><button class="text-button" data-move="projects" data-index="${index}" data-direction="down" type="button">下移</button><button class="text-button danger" data-remove="projects" data-index="${index}" type="button">删除</button></div></article>`;
+  return `<article class="card-editor${state.itemIndex === index ? " selected" : ""}" data-editor-card="${index}"><h3>作品 ${index + 1}</h3>${field("名称", item.title, `projects.${index}.title`)}${field("类型", item.type, `projects.${index}.type`)}${field("介绍", item.description, `projects.${index}.description`, "textarea")}${field("跳转链接", item.url, `projects.${index}.url`)}<div class="card-actions"><button class="text-button" data-move="projects" data-index="${index}" data-direction="up" type="button">上移</button><button class="text-button" data-move="projects" data-index="${index}" data-direction="down" type="button">下移</button><button class="text-button danger" data-remove="projects" data-index="${index}" type="button">删除</button></div></article>`;
 }
 
 function renderCards(kind, title, intro, card) {
@@ -71,10 +72,6 @@ function renderProperties() {
   if (state.section === "experiences") renderCards("experiences", "实习经历", "可添加、删除和调整顺序。", experienceCard);
   if (state.section === "projects") renderCards("projects", "代表作品", "可添加、删除和调整顺序。", projectCard);
   if (state.section === "style") renderStyle();
-}
-
-function valueAtPath(path) {
-  return path.split(".").reduce((value, key) => value[key], state.content);
 }
 
 function updatePath(path, value) {
@@ -122,6 +119,7 @@ properties.addEventListener("change", async (event) => {
 
 document.querySelectorAll(".section-button").forEach((button) => button.addEventListener("click", () => {
   state.section = button.dataset.section;
+  state.itemIndex = null;
   document.querySelector(".section-button.active").classList.remove("active");
   button.classList.add("active");
   renderProperties();
@@ -129,7 +127,14 @@ document.querySelectorAll(".section-button").forEach((button) => button.addEvent
 
 window.addEventListener("message", (event) => {
   if (!event.data?.section) return;
-  document.querySelector(`.section-button[data-section="${event.data.section}"]`)?.click();
+  const button = document.querySelector(`.section-button[data-section="${event.data.section}"]`);
+  if (!button) return;
+  button.click();
+  if (Number.isInteger(event.data.index)) {
+    state.itemIndex = event.data.index;
+    renderProperties();
+    document.querySelector(`[data-editor-card="${state.itemIndex}"]`)?.scrollIntoView({ block: "center" });
+  }
 });
 
 publish.addEventListener("click", async () => {
