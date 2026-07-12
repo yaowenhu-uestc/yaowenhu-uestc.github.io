@@ -67,8 +67,18 @@ export async function completeLogin(request, env) {
       repository_id: repositoryId
     })
   });
-  const token = await tokenResponse.json();
-  if (!tokenResponse.ok || !token.access_token) return errorPage("无法获取 GitHub 授权，请重新登录。", 401);
+  const tokenText = await tokenResponse.text();
+  let token;
+  try {
+    token = JSON.parse(tokenText);
+  } catch {
+    console.error("GitHub token exchange returned a non-JSON response", tokenResponse.status, tokenText.slice(0, 200));
+    return errorPage("GitHub 拒绝了授权请求，请重新登录。", 401);
+  }
+  if (!tokenResponse.ok || !token.access_token) {
+    console.error("GitHub token exchange failed", tokenResponse.status, token.error || "unknown error");
+    return errorPage("无法获取 GitHub 授权，请重新登录。", 401);
+  }
   const userResponse = await fetch("https://api.github.com/user", {
     headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${token.access_token}`, "X-GitHub-Api-Version": "2026-03-10" }
   });
