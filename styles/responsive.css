@@ -9,6 +9,5 @@
   .experience-card { grid-template-columns: 1fr; gap: var(--space-md); padding: 32px 0; }
   .project-grid { grid-template-columns: 1fr; }
   .project-card { min-height: 240px; padding: var(--space-xl); }
-  .principle-row { grid-template-columns: 1fr; gap: var(--space-xs); }
   .footer { align-items: start; flex-direction: column; }
 }

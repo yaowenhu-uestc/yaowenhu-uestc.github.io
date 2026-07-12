@@ -26,20 +26,7 @@ h2 { font-size: clamp(40px, 5vw, 64px); letter-spacing: -0.07em; line-height: 0.
 .project-card:hover { background: var(--panel-soft); transform: translateY(-4px); }
 .project-arrow { align-self: end; color: var(--ios-blue); font-size: 28px; }
 .education-school { color: var(--text); font-size: 30px; font-weight: 760; letter-spacing: -0.05em; }
-.about-intro { display: grid; gap: var(--space-sm); max-width: 720px; color: var(--text-secondary); font-size: 18px; line-height: 1.7; }
-.about-intro p:last-child { color: var(--text); font-size: 22px; font-weight: 680; letter-spacing: -0.03em; }
-.about-accordions { margin-top: 32px; border-top: 0.5px solid var(--hairline); }
-.about-accordions details { border-bottom: 0.5px solid var(--hairline); }
-.about-accordions summary { min-height: 56px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; font-size: 18px; font-weight: 720; list-style: none; }
-.about-accordions summary::-webkit-details-marker { display: none; }
-.about-accordions summary span { color: var(--ios-blue); font-size: 24px; font-weight: 400; transition: transform 200ms ease-in-out; }
-.about-accordions details[open] summary span { transform: rotate(45deg); }
-.about-detail { display: grid; gap: var(--space-lg); padding: 0 0 32px; }
-.about-group { display: grid; gap: var(--space-sm); }
-.about-group h3 { font-size: 14px; font-weight: 720; }
-.principle-list { display: grid; }
-.principle-row { display: grid; grid-template-columns: 152px minmax(0, 1fr); gap: var(--space-md); padding: 12px 0; border-top: 0.5px solid var(--hairline); color: var(--text-secondary); line-height: 1.65; }
-.principle-row strong { color: var(--text); font-size: 14px; }
+.about-intro { max-width: 760px; color: var(--text-secondary); font-size: 20px; line-height: 1.75; }
 .visit-stats { display: flex; gap: 40px; }
 .visit-stats p { display: grid; gap: var(--space-xs); color: var(--text-tertiary); font-size: 12px; }
 .visit-stats span { color: var(--text); font-size: 24px; font-weight: 760; letter-spacing: -0.05em; }

@@ -1,98 +1,6 @@
 export const githubUrl = "https://github.com/yaowenhu-uestc";
 export const email = "yaowen.hu.uestc@gmail.com";
 
-export const aboutSections = [
-  {
-    title: "我的观念",
-    groups: [
-      {
-        title: "价值观",
-        items: [
-          ["用户第一", "永远不把方案当需求，尝试理解需求本身。"],
-          ["创造价值", "创造，并且被使用。这是我最看重的事情。"],
-          ["快速行动", "快比全重要，做比懂重要，不等学完再开始。"],
-          ["长期主义", "目标长期不变，路径随时调整。"],
-          ["持续学习", "世界变化越来越快，真正重要的是持续学习能力。"]
-        ]
-      },
-      {
-        title: "产品观",
-        items: [
-          ["来自真实需求", "最强的产品往往不是设计出来的，而是先解决一个真实问题，再产品化。"],
-          ["用户永远排第一", "优先级：用户 > 产品 > 创始人 > 技术 > 媒体。"],
-          ["流程不是目的", "流程创造的价值必须大于它带来的摩擦，否则应该删除。"],
-          ["文档应该简单", "简洁、清晰、易读、少废话；形式不能比内容重要。"]
-        ]
-      },
-      {
-        title: "我相信什么",
-        items: [
-          ["产品", "不是 PPT，而是用户每天都会打开的东西。"],
-          ["AI", "不是未来，而是现在。"],
-          ["创造与速度", "创造比优化重要，速度比完美重要。"],
-          ["想象力", "没有想象力的事不值得做。"]
-        ]
-      }
-    ]
-  },
-  {
-    title: "我的方法论",
-    groups: [
-      {
-        title: "AI 学习方法",
-        items: [
-          ["快 > 全", "学得够快，比学得够全重要。"],
-          ["做 > 懂", "不要学完，直接开始。"],
-          ["重复沉淀", "重复两次，就值得沉淀。"],
-          ["遇事先问 AI", "遇到任何问题，第一反应是：AI 能不能做？"],
-          ["直接开始", "不要浪费时间比较工具，直接选一个，开始。"]
-        ]
-      },
-      {
-        title: "工作方式",
-        items: [
-          ["先做 Demo", "任何想法，先做 Demo。"],
-          ["快速验证", "快速试错，快速验证，快速调整。"],
-          ["AI 优先", "任何重复工作，优先考虑 AI。"],
-          ["文档驱动", "所有重要事情，都应该沉淀。"],
-          ["自动化", "能自动，绝不手动。"]
-        ]
-      }
-    ]
-  },
-  {
-    title: "能力与兴趣",
-    groups: [
-      {
-        title: "能力模型",
-        items: [
-          ["产品能力", "用户研究、PRD、产品规划、产品分析。"],
-          ["AI 能力", "提示词、Agent、Skill、Workflow、MCP、Function Calling、RAG、Embedding。"]
-        ]
-      },
-      {
-        title: "我的兴趣",
-        items: [["关注领域", "AI 产品、Agent、大模型、产品设计、用户研究、商业模式、提示词工程、Cursor、Claude Code、GitHub。"]]
-      }
-    ]
-  },
-  {
-    title: "成长轨迹",
-    groups: [
-      {
-        title: "从数据到 AI 产品",
-        items: [
-          ["轨迹", "龙猫数据 → 好未来 C 端社区产品 → 百度 B 端 AI 医疗产品 → 快手内容治理和模型标注平台产品 → infiDive 出海 C 端 AI 互动产品。"],
-          ["龙猫数据", "做数据项目，了解什么是数据。"],
-          ["好未来", "做互联网产品，开始理解什么是产品。"],
-          ["百度", "了解 AI，意识到它不只是工具，而是一种新的工作方式。"],
-          ["快手与 infiDive", "观察和思考 AI 产品、AI Agent、AI Native。"]
-        ]
-      }
-    ]
-  }
-];
-
 export const experiences = [
   {
     date: "2026.02 — 至今",
@@ -110,8 +18,8 @@ export const experiences = [
     role: "AI 产品实习生",
     summary: "参与学而思亲子 App 家长社区从 0 到 1 建设。",
     points: [
-      "规划推荐、搜索、审核与发帖等核心链路，服务 3000+ 家长用户。",
-      "设计 AI 学习集与讨论答疑模块，推进内容供给和种子用户共建。"
+      "完成 8 个大版本、10 个小版本迭代，覆盖推荐、搜索、审核与发帖等核心链路。",
+      "推动家长社区上线北京、上海，覆盖 300 万+ 家长用户；通过分阶段供给策略和 30 位种子家长解决冷启动。"
     ]
   },
   {
@@ -128,15 +36,33 @@ export const experiences = [
 
 export const projects = [
   {
-    title: "AI Product Playbook",
-    type: "AI 产品方法论",
-    description: "沉淀 AI 产品判断、Prompt、Skill、Agent 与工作流实践。",
-    url: "https://github.com/yaowenhu-uestc/ai-product-playbook"
+    title: "学而思亲子家长社区首页",
+    type: "已上线",
+    description: "面向 300 万+ 家长用户的社区首页，提供资料分享、讨论答疑等核心模块。",
+    url: "https://parent-community-home.netlify.app/"
   },
   {
-    title: "infiDive Discover",
-    type: "关系型 AI 原型",
-    description: "探索长期记忆与关系型 AI 的 iOS 发现页交互体验。",
-    url: "https://github.com/yaowenhu-uestc/infidive-discover"
+    title: "家长社区后台管理",
+    type: "已上线",
+    description: "集内容审核、运营配置与数据看板于一体的社区运营后台。",
+    url: "https://parent-community-management.netlify.app/"
+  },
+  {
+    title: "Python 小工具",
+    type: "效率工具",
+    description: "个人日常效率工具集合。",
+    url: "https://python-tool.netlify.app/"
+  },
+  {
+    title: "ASSA 学会官网",
+    type: "官网",
+    description: "学生学术协会品牌官网，展示活动并支持成员招募。",
+    url: "https://assa-hyw.netlify.app/"
+  },
+  {
+    title: "美团周末管家",
+    type: "AI Agent",
+    description: "整合本地生活服务，为用户智能规划周末行程。",
+    url: "https://weekend-agent.netlify.app/"
   }
 ];
