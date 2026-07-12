@@ -8,6 +8,10 @@
       {
         "name": "VISIT_COUNTER",
         "class_name": "VisitCounter"
+      },
+      {
+        "name": "ADMIN_SESSIONS",
+        "class_name": "AdminSession"
       }
     ]
   },
@@ -15,6 +19,10 @@
     {
       "tag": "v1",
       "new_sqlite_classes": ["VisitCounter"]
+    },
+    {
+      "tag": "v2",
+      "new_sqlite_classes": ["AdminSession"]
     }
   ]
 }

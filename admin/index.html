@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>胡耀文 · 网站后台</title>
+    <link rel="stylesheet" href="https://yaowenhu-uestc.github.io/admin/styles.css" />
+  </head>
+  <body>
+    <main class="admin-shell">
+      <section class="login-card" id="login-panel">
+        <p class="eyebrow">胡耀文的个人主页</p>
+        <h1>网站后台</h1>
+        <p>使用 GitHub 登录后编辑网站文件并提交发布。</p>
+        <a class="button primary" href="/admin/login">使用 GitHub 登录</a>
+      </section>
+      <section class="editor" id="editor-panel" hidden>
+        <header class="editor-header">
+          <div>
+            <p class="eyebrow">网站后台</p>
+            <h1 id="file-title">选择文件</h1>
+          </div>
+          <div class="header-actions">
+            <span id="account"></span>
+            <button class="button secondary" id="logout" type="button">退出登录</button>
+          </div>
+        </header>
+        <div class="editor-layout">
+          <nav aria-label="可编辑文件" id="file-list"></nav>
+          <section class="editor-workspace">
+            <textarea aria-label="文件内容" id="editor" spellcheck="false" disabled></textarea>
+            <footer>
+              <p aria-live="polite" id="status">请选择文件。</p>
+              <button class="button primary" id="save" type="button" disabled>保存并发布</button>
+            </footer>
+          </section>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="https://yaowenhu-uestc.github.io/admin/editor.js"></script>
+  </body>
+</html>

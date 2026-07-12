@@ -1,3 +1,6 @@
+import { handleAdminRequest } from "./admin.js";
+export { AdminSession } from "./admin-session.js";
+
 const allowedOrigin = "https://yaowenhu-uestc.github.io";
 
 function shanghaiDate() {
@@ -22,6 +25,8 @@ function corsHeaders() {
 
 export default {
   async fetch(request, env) {
+    const adminResponse = await handleAdminRequest(request, env);
+    if (adminResponse) return adminResponse;
     if (request.headers.get("Origin") !== allowedOrigin) return new Response("Forbidden", { status: 403 });
     if (request.method === "OPTIONS") return new Response(null, { headers: corsHeaders() });
     if (request.method !== "POST" || new URL(request.url).pathname !== "/count") return new Response("Not found", { status: 404 });
