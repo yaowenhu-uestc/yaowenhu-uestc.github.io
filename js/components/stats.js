@@ -1,32 +1,16 @@
-const counterUrl = "https://yaowenhu.goatcounter.com/counter/TOTAL.json";
-
-function shanghaiDate() {
-  const parts = new Intl.DateTimeFormat("en-CA", {
-    timeZone: "Asia/Shanghai",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit"
-  }).formatToParts();
-  const values = Object.fromEntries(parts.map(({ type, value }) => [type, value]));
-  return `${values.year}-${values.month}-${values.day}`;
-}
-
-async function getCount(query = "") {
-  const separator = query ? "&" : "?";
-  const response = await fetch(`${counterUrl}${query}${separator}v=${Date.now()}`, { cache: "no-store" });
-  if (!response.ok) throw new Error("GoatCounter counter request failed");
-  const { count } = await response.json();
-  return Number(count).toLocaleString("zh-CN");
-}
+const counterUrl = "https://hyw-visit-counter.infidive-tv.workers.dev/count";
 
 export async function loadVisitStats() {
   const total = document.querySelector("#total-visits");
   const today = document.querySelector("#today-visits");
-  const [totalCount, todayCount] = await Promise.allSettled([
-    getCount(),
-    getCount(`?start=${shanghaiDate()}`)
-  ]);
+  try {
+    const response = await fetch(counterUrl, { method: "POST" });
+    if (!response.ok) return;
 
-  if (totalCount.status === "fulfilled") total.textContent = totalCount.value;
-  if (todayCount.status === "fulfilled") today.textContent = todayCount.value;
+    const counts = await response.json();
+    total.textContent = Number(counts.total).toLocaleString("zh-CN");
+    today.textContent = Number(counts.today).toLocaleString("zh-CN");
+  } catch {
+    // 保留默认占位符。
+  }
 }
