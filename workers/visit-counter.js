@@ -25,15 +25,20 @@ function corsHeaders() {
 
 export default {
   async fetch(request, env) {
-    const adminResponse = await handleAdminRequest(request, env);
-    if (adminResponse) return adminResponse;
-    if (request.headers.get("Origin") !== allowedOrigin) return new Response("Forbidden", { status: 403 });
-    if (request.method === "OPTIONS") return new Response(null, { headers: corsHeaders() });
-    if (request.method !== "POST" || new URL(request.url).pathname !== "/count") return new Response("Not found", { status: 404 });
+    try {
+      const adminResponse = await handleAdminRequest(request, env);
+      if (adminResponse) return adminResponse;
+      if (request.headers.get("Origin") !== allowedOrigin) return new Response("Forbidden", { status: 403 });
+      if (request.method === "OPTIONS") return new Response(null, { headers: corsHeaders() });
+      if (request.method !== "POST" || new URL(request.url).pathname !== "/count") return new Response("Not found", { status: 404 });
 
-    const counter = env.VISIT_COUNTER.getByName("global");
-    const response = await counter.fetch(request);
-    return new Response(response.body, { headers: { ...corsHeaders(), "Content-Type": "application/json" } });
+      const counter = env.VISIT_COUNTER.getByName("global");
+      const response = await counter.fetch(request);
+      return new Response(response.body, { headers: { ...corsHeaders(), "Content-Type": "application/json" } });
+    } catch (error) {
+      console.error("Unhandled worker exception", error);
+      return new Response("后台暂时不可用，请稍后重试。", { status: 500 });
+    }
   }
 };
 
