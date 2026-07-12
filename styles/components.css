@@ -2,7 +2,7 @@
 .nav-links a, .footer a { min-height: 44px; display: inline-flex; align-items: center; }
 .nav-links a:hover, .footer a:hover { color: var(--ios-blue); }
 .github-link { min-height: 44px; display: inline-flex; align-items: center; padding: 0 var(--space-md); border: 0.5px solid var(--hairline); border-radius: var(--radius-md); font-size: 14px; font-weight: 720; }
-h1 { display: inline-block; margin-bottom: var(--space-lg); font-family: "SF Pro Display", "PingFang SC", sans-serif; font-size: clamp(64px, 8vw, 104px); font-style: italic; letter-spacing: -0.085em; line-height: 0.9; font-weight: 860; color: var(--text); background: linear-gradient(115deg, var(--text) 10%, var(--ios-blue)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; transform: skewX(-5deg); }
+h1 { margin-bottom: var(--space-lg); font-family: var(--font); font-size: clamp(64px, 8vw, 104px); letter-spacing: -0.055em; line-height: 0.96; font-weight: 840; color: var(--text); }
 h2 { font-size: clamp(40px, 5vw, 64px); letter-spacing: -0.07em; line-height: 0.95; font-weight: 840; }
 .hero-summary { max-width: 520px; color: var(--text-secondary); font-size: 20px; line-height: 1.7; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-md); margin-top: 32px; }
