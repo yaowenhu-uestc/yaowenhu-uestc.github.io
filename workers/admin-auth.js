@@ -57,7 +57,7 @@ export async function completeLogin(request, env) {
   if (!stateRecord?.verifier) return errorPage("登录已过期，请重新登录。");
   const tokenResponse = await fetch("https://github.com/login/oauth/access_token", {
     method: "POST",
-    headers: { Accept: "application/json", "Content-Type": "application/x-www-form-urlencoded" },
+    headers: { Accept: "application/json", "Content-Type": "application/x-www-form-urlencoded", "User-Agent": "Hywen-Website-Editor" },
     body: new URLSearchParams({
       client_id: env.GITHUB_APP_CLIENT_ID,
       client_secret: env.GITHUB_APP_CLIENT_SECRET,
@@ -80,7 +80,7 @@ export async function completeLogin(request, env) {
     return errorPage("无法获取 GitHub 授权，请重新登录。", 401);
   }
   const userResponse = await fetch("https://api.github.com/user", {
-    headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${token.access_token}`, "X-GitHub-Api-Version": "2026-03-10" }
+    headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${token.access_token}`, "User-Agent": "Hywen-Website-Editor", "X-GitHub-Api-Version": "2026-03-10" }
   });
   const user = await userResponse.json();
   if (!userResponse.ok || user.login !== allowedLogin) return new Response("Forbidden", { status: 403, headers: { "Set-Cookie": expiredSessionCookie() } });

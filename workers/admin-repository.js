@@ -33,6 +33,7 @@ async function github(token, path, options = {}) {
     headers: {
       Accept: "application/vnd.github+json",
       Authorization: `Bearer ${token}`,
+      "User-Agent": "Hywen-Website-Editor",
       "X-GitHub-Api-Version": "2026-03-10",
       ...options.headers
     }
