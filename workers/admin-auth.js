@@ -1,4 +1,4 @@
-import { expiredSessionCookie, randomId, sessionCookie, sessionRequest } from "./admin-session.js";
+import { randomId, sessionRequest } from "./admin-session.js";
 
 const allowedLogin = "yaowenhu-uestc";
 const repositoryId = "1298378322";
@@ -11,8 +11,16 @@ function configured(env) {
   return env.GITHUB_APP_CLIENT_ID && env.GITHUB_APP_CLIENT_SECRET && env.SESSION_SECRET;
 }
 
+function validReturnTo(value) {
+  try {
+    return new URL(value).origin === "https://yaowenhu-uestc.github.io";
+  } catch {
+    return false;
+  }
+}
+
 function errorPage(message, status = 400) {
-  return new Response(`<!doctype html><meta charset="utf-8"><title>后台登录失败</title><p>${message}</p><p><a href="/admin">返回后台</a></p>`, {
+  return new Response(`<!doctype html><meta charset="utf-8"><title>主页编辑登录失败</title><p>${message}</p>`, {
     status,
     headers: { "Content-Type": "text/html; charset=utf-8" }
   });
@@ -26,12 +34,14 @@ async function codeChallenge(verifier) {
 }
 
 export async function beginLogin(request, env) {
-  if (!configured(env)) return errorPage("管理员后台尚未完成 GitHub App 配置。", 503);
+  if (!configured(env)) return errorPage("主页编辑尚未完成登录配置。", 503);
+  const returnTo = new URL(request.url).searchParams.get("return_to");
+  if (!returnTo || !validReturnTo(returnTo)) return errorPage("返回地址不正确。");
   const state = randomId();
   const verifier = randomId();
   await sessionRequest(env, `/state?key=oauth:${state}`, {
     method: "PUT",
-    body: JSON.stringify({ value: { verifier }, expirationTtl: 600 })
+    body: JSON.stringify({ value: { verifier, returnTo }, expirationTtl: 600 })
   });
   const authorizeUrl = new URL("https://github.com/login/oauth/authorize");
   authorizeUrl.search = new URLSearchParams({
@@ -47,7 +57,7 @@ export async function beginLogin(request, env) {
 }
 
 export async function completeLogin(request, env) {
-  if (!configured(env)) return errorPage("管理员后台尚未完成 GitHub App 配置。", 503);
+  if (!configured(env)) return errorPage("主页编辑尚未完成登录配置。", 503);
   const url = new URL(request.url);
   const state = url.searchParams.get("state");
   const code = url.searchParams.get("code");
@@ -83,12 +93,14 @@ export async function completeLogin(request, env) {
     headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${token.access_token}`, "User-Agent": "Hywen-Website-Editor", "X-GitHub-Api-Version": "2026-03-10" }
   });
   const user = await userResponse.json();
-  if (!userResponse.ok || user.login !== allowedLogin) return new Response("Forbidden", { status: 403, headers: { "Set-Cookie": expiredSessionCookie() } });
+  if (!userResponse.ok || user.login !== allowedLogin) return new Response("Forbidden", { status: 403 });
   const sessionId = randomId();
   const expirationTtl = Math.min(Number(token.expires_in) || 28800, 28800);
   await sessionRequest(env, `/session?key=session:${sessionId}`, {
     method: "PUT",
     body: JSON.stringify({ value: { login: user.login, token: token.access_token, expiresAt: Date.now() + expirationTtl * 1000 }, expirationTtl })
   });
-  return new Response(null, { status: 302, headers: { Location: "/admin/", "Set-Cookie": await sessionCookie(sessionId, env.SESSION_SECRET) } });
+  const returnUrl = new URL(stateRecord.returnTo);
+  returnUrl.hash = `editor_token=${sessionId}`;
+  return Response.redirect(returnUrl.toString(), 302);
 }

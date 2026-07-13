@@ -1,12 +1,12 @@
 import { projects } from "../data.js";
 
 export function projectsSection() {
-  const cards = projects.map((project) => `
-    <a class="project-card" href="${project.url}" target="_blank" rel="noreferrer">
-      <p class="project-type">${project.type}</p>
+  const cards = projects.map((project, index) => `
+    <a class="project-card" href="${project.url}" target="_blank" rel="noreferrer" data-edit-card="projects" data-edit-index="${index}">
+      <p class="project-type" data-edit="projects.${index}.type">${project.type}</p>
       <div>
-        <h3>${project.title}</h3>
-        <p>${project.description}</p>
+        <h3 data-edit="projects.${index}.title">${project.title}</h3>
+        <p data-edit="projects.${index}.description">${project.description}</p>
       </div>
       <span class="project-arrow" aria-hidden="true">↗</span>
     </a>`).join("");

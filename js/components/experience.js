@@ -1,14 +1,14 @@
 import { experiences } from "../data.js";
 
 export function experience() {
-  const cards = experiences.map((item) => `
-    <article class="experience-card">
-      <p class="experience-date">${item.date}</p>
+  const cards = experiences.map((item, index) => `
+    <article class="experience-card" data-edit-card="experiences" data-edit-index="${index}">
+      <p class="experience-date" data-edit="experiences.${index}.date">${item.date}</p>
       <div>
-        <p class="experience-company">${item.company}</p>
-        <h3>${item.role}</h3>
-        <p class="experience-summary">${item.summary}</p>
-        <ul>${item.points.map((point) => `<li>${point}</li>`).join("")}</ul>
+        <p class="experience-company" data-edit="experiences.${index}.company">${item.company}</p>
+        <h3 data-edit="experiences.${index}.role">${item.role}</h3>
+        <p class="experience-summary" data-edit="experiences.${index}.summary">${item.summary}</p>
+        <ul>${item.points.map((point, pointIndex) => `<li data-edit="experiences.${index}.points.${pointIndex}">${point}</li>`).join("")}</ul>
       </div>
     </article>`).join("");
 

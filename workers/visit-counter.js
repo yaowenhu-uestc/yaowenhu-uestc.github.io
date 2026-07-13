@@ -1,4 +1,4 @@
-import { handleAdminRequest } from "./admin.js";
+import { handleEditorRequest } from "./admin.js";
 export { AdminSession } from "./admin-session.js";
 
 const allowedOrigin = "https://yaowenhu-uestc.github.io";
@@ -26,8 +26,8 @@ function corsHeaders() {
 export default {
   async fetch(request, env) {
     try {
-      const adminResponse = await handleAdminRequest(request, env);
-      if (adminResponse) return adminResponse;
+      const editorResponse = await handleEditorRequest(request, env);
+      if (editorResponse) return editorResponse;
       if (request.headers.get("Origin") !== allowedOrigin) return new Response("Forbidden", { status: 403 });
       if (request.method === "OPTIONS") return new Response(null, { headers: corsHeaders() });
       if (request.method !== "POST" || new URL(request.url).pathname !== "/count") return new Response("Not found", { status: 404 });
